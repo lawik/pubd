@@ -2,6 +2,7 @@
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
 import "../css/app.scss";
+import Alpine from "alpinejs";
 
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
@@ -22,6 +23,13 @@ let csrfToken = document
   .getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
   params: { _csrf_token: csrfToken },
+  dom: {
+    onBeforeElUpdated(from, to) {
+      if (from.__x) {
+        Alpine.clone(from.__x, to);
+      }
+    },
+  },
 });
 
 // Show progress bar on live navigation and form submits
