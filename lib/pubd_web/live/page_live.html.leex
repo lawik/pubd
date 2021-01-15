@@ -3,7 +3,7 @@
   <p>Peace of mind from prototype to production</p>
 
   <form phx-change="suggest" phx-submit="search" x-data="{ text: '' }">
-    <input type="text" name="q" value="<%= @query %>" placeholder="Live dependency search" list="results" autocomplete="off" x-model="text" />
+    <input class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4" type="text" name="q" value="<%= @query %>" placeholder="Live dependency search" list="results" autocomplete="off" x-model="text" />
     <datalist id="results">
       <%= for {app, _vsn} <- @results do %>
         <option value="<%= app %>"><%= app %></option>
